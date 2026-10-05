@@ -1,0 +1,27 @@
+void loop() {
+  smokeValue = analogRead(smokeSensorPin); // Read the smoke sensor value
+  flameValue = digitalRead(flameSensorPin); // Read the flame sensor value
+
+  // Send data to Serial Monitor
+  Serial.print("Smoke Level: ");
+  Serial.println(smokeValue); // Send the smoke sensor value
+  Serial.print("Flame Detected: ");
+  Serial.println(flameValue == HIGH ? "YES" : "NO"); // Send the flame sensor status
+
+  // Display data on OLED
+  display.clearDisplay();
+  display.setCursor(0, 0); // Set cursor position
+
+  display.println(F("Smoke & Flame Sensor"));
+  display.println(F("--------------------"));
+
+  display.print(F("Smoke Level: "));
+  display.println(smokeValue);
+
+  display.print(F("Flame: "));
+  display.println(flameValue == HIGH ? "YES" : "NO");
+
+  display.display(); // Update OLED display
+
+  delay(1000); // Send data every second
+}
